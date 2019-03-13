@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import 'knacss/css/knacss.css';
-import 'knacss/css/grillade.css';
 import 'font-awesome/css/font-awesome.css';
 import './palette.css';
+import './grillade.css';
 import App from './App.vue'
 import router from './router'
 
