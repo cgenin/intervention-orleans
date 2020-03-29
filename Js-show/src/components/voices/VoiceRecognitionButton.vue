@@ -33,53 +33,53 @@
     },
     methods: {
       doReset(){
-        this.$data.text = '';
-        this.$data.started = false;
-        this.$data.error = false;
+        this.text = '';
+        this.started = false;
+        this.error = false;
       },
       doClick(){
-        if (this.$data.started) {
-          this.$data.speechRecognition.stop();
-          this.$data.started = false;
+        if (this.started) {
+          this.speechRecognition.stop();
+          this.started = false;
           return;
         }
-        this.$data.text = '';
-        this.$data.speechRecognition.start();
-        this.$data.started = true;
+        this.text = '';
+        this.speechRecognition.start();
+        this.started = true;
 
       }
     },
     mounted(){
-      console.log(this.$data.speechRecognition);
-      this.$data.speechRecognition.onstart = () => {
-        this.$data.text = '';
+      console.log(this.speechRecognition);
+      this.speechRecognition.onstart = () => {
+        this.text = '';
 
       };
-      this.$data.speechRecognition.onerror = (event) => {
+      this.speechRecognition.onerror = (event) => {
         console.error(event);
-        this.$data.started = false;
-        this.$data.error = true;
+        this.started = false;
+        this.error = true;
         switch (event.error) {
           case 'network':
-            this.$data.msgError = `Le réseau est nécessaire pour la reconnaissance vocale`;
+            this.msgError = `Le réseau est nécessaire pour la reconnaissance vocale`;
               break;
           default:
-            this.$data.msgError = `Une erreur s'est produite`;
+            this.msgError = `Une erreur s'est produite`;
         }
 
       };
-      this.$data.speechRecognition.onresult = (event) => {
+      this.speechRecognition.onresult = (event) => {
 
         const res = event.results[event.resultIndex][0];
         if (res) {
-          this.$data.text = res.transcript;
+          this.text = res.transcript;
         } else {
           const newText = res.transcript;
-          this.$data.text += newText;
+          this.text += newText;
         }
-        console.log(this.$data.text);
-        if (this._props.callback) {
-          this._props.callback(this.$data.text);
+        console.log(this.text);
+        if (this.callback) {
+          this.callback(this.text);
         }
       };
     },

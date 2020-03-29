@@ -14,14 +14,14 @@
     },
     methods: {
       doSpeak(){
-        if (!this._props.text || this._props.text === '' || this.$data.started) {
+        if (!this.text || this.text === '' || this.started) {
           console.log('do nothing');
           return;
         }
 
-        this.$data.started = true;
-        const msg = new SpeechSynthesisUtterance(this._props.text);
-        msg.onend = () => this.$data.started = false;
+        this.started = true;
+        const msg = new SpeechSynthesisUtterance(this.text);
+        msg.onend = () => this.started = false;
         msg.lang = 'fr-FR';
         window.speechSynthesis.speak(msg);
 
@@ -29,7 +29,7 @@
     },
     computed: {
       classIcon: function () {
-        const {started} = this.$data;
+        const {started} = this;
         return {fa: true,  'fa-comment': !started, 'fa-ban': started};
       }
     },

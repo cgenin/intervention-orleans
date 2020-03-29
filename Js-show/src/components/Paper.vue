@@ -10,8 +10,8 @@
     computed: {
       classPaper: function () {
         const def = {'paper-panel': true,};
-        if (this._props.class) {
-          def[this._props.class] = true;
+        if (this.class) {
+          def[this.class] = true;
         }
         return def;
       }

@@ -29,7 +29,7 @@
     },
     methods: {
       doListen(txt){
-        this.$data.texte = txt;
+        this.texte = txt;
       }
     },
     components: {

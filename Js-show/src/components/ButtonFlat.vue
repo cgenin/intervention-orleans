@@ -9,12 +9,12 @@
     name: 'buttonFab',
     computed: {
       classA: function () {
-        const primary = this._props.type === 'primary';
-        const inverse = this._props.type === 'inverse';
-        const success = this._props.type === 'success';
-        const info = this._props.type === 'info';
-        const warning = this._props.type === 'warning';
-        const danger = this._props.type === 'danger';
+        const primary = this.type === 'primary';
+        const inverse = this.type === 'inverse';
+        const success = this.type === 'success';
+        const info = this.type === 'info';
+        const warning = this.type === 'warning';
+        const danger = this.type === 'danger';
         return {
           'button-flat': true,
           'button-flat-inverse':inverse,

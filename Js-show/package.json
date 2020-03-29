@@ -10,9 +10,11 @@
   "dependencies": {
     "font-awesome": "^4.7.0",
     "knacss": "^7.1.0",
+    "leaflet": "^1.6.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
-    "vue2-google-maps": "^0.10.6"
+    "vue2-google-maps": "^0.10.6",
+    "vue2-leaflet": "^2.5.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

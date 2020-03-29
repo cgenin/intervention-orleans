@@ -67,28 +67,28 @@
     },
     methods: {
       hideUI() {
-        this.$data.showbutton = false;
-        this.$data.showimg = false;
-        this.$data.showvideo = false;
-        this.$data.showerror = false;
-        this.$data.showcontrols = false;
+        this.showbutton = false;
+        this.showimg = false;
+        this.showvideo = false;
+        this.showerror = false;
+        this.showcontrols = false;
       },
       showButton() {
         const { video } = this.$refs;
 
         video.pause();
         video.src = '';
-        if (this.$data.stream) {
-          this.$data.stream.getTracks().forEach((track) => track.stop());
-          this.$data.stream = null;
+        if (this.stream) {
+          this.stream.getTracks().forEach((track) => track.stop());
+          this.stream = null;
         }
         this.hideUI();
-        this.$data.showbutton = true;
+        this.showbutton = true;
       },
       showVideo() {
         this.hideUI();
-        this.$data.showvideo = true;
-        this.$data.showcontrols = true;
+        this.showvideo = true;
+        this.showcontrols = true;
       },
       takeSnapShot() {
         const { canvas, video } = this.$refs;
@@ -104,14 +104,14 @@
         return null;
       },
       downloadPhoto() {
-        if (!this.$data.showimg) {
+        if (!this.showimg) {
           return;
         }
         const { download } = this.$refs;
         download.click();
       },
       takePhoto() {
-        if (this.$data.showimg) {
+        if (this.showimg) {
           return;
         }
         const snap = this.takeSnapShot();
@@ -121,28 +121,28 @@
         image.setAttribute('src', snap);
         image.width = width;
         image.height = height;
-        this.$data.showimg = true;
-        this.$data.showvideo = false;
+        this.showimg = true;
+        this.showvideo = false;
         download.href = snap;
         video.pause();
       },
       deletePhoto() {
-        if (!this.$data.showimg) {
+        if (!this.showimg) {
           return;
         }
         const { image, video, download } = this.$refs;
         image.setAttribute('src', '');
-        this.$data.showimg = false;
-        this.$data.showvideo = true;
+        this.showimg = false;
+        this.showvideo = true;
         download.href = '#';
         video.play();
       },
       doStart() {
-        this.$data.showerror = false;
+        this.showerror = false;
         const { video } = this.$refs;
         const media = getMedia();
         media({ video: true }, (stream) => {
-            this.$data.stream = stream;
+            this.stream = stream;
             try {
               video.src = window.URL.createObjectURL(stream);
             } catch (e) {
@@ -155,14 +155,14 @@
           },
           (err) => {
             console.error(err);
-            this.$data.showerror = true;
+            this.showerror = true;
 
             switch (err.name) {
               case 'PermissionDeniedError':
-                this.$data.errorMsg = `La permission d'utiliser la caméra a été refusée pour cette application.`
+                this.errorMsg = `La permission d'utiliser la caméra a été refusée pour cette application.`
                 break;
               default:
-                this.$data.errorMsg = `Erreur lors de l'utilisation de la caméra.`;
+                this.errorMsg = `Erreur lors de l'utilisation de la caméra.`;
             }
 
           });
@@ -170,8 +170,8 @@
     },
     mounted() {
       const media = getMedia();
-      this.$data.showerror = !media;
-      this.$data.showbutton = !this.$data.showerror;
+      this.showerror = !media;
+      this.showbutton = !this.showerror;
     },
     components: {
       PageContainer, ButtonRaised, ButtonFab
